@@ -56,5 +56,19 @@ namespace BandTracker.Tests
       CollectionAssert.AreEqual(testList, result);
     }
 
+    [TestMethod]
+    public void Find_FindsBandInDatabase_Band()
+    {
+     //Arrange
+     Band testBand = new Band("Nirvana");
+     testBand.Save();
+
+     //Act
+     Band foundBand = Band.Find(testBand.GetId());
+
+     //Assert
+     Assert.AreEqual(testBand, foundBand);
+    }
+
   }
 }

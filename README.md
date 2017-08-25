@@ -32,8 +32,9 @@ _This web app will allow a user to create bands that have played at a venue. The
 |  Update venue name (UPDATE)| Crocodile | Crocodile |
 |  Delete venue (DELETE)|A list of only one venue rather than two | A database query that only returns one venue after delete method has been called |
 | Get all bands at first position in database (READ)| 0 | Database List<Bands> count start at 0|
-|  Save band to database (CREATE) on the specific venue page| List with one band: Nirvana | List with one band: Nirvana |
+|  Save band to database (CREATE)| List with one band: Nirvana | List with one band: Nirvana |
 |  Find band from database by id (READ)| Ween  |  Ween  |
+|  Save band to database (JOIN STATEMENT) by venue_id| List with one band: Nirvana | List with one band: Nirvana |
 |  Get all bands of a specific venue in join table (JOIN STATEMENT) after user clicks specific venue on homepage|  Local band list  |  Database band list matches local band list  |
 |  Get all venues of a specific band in join table (JOIN STATEMENT) after user clicks on a specific band in the all band lists (button on the homepage)|  Local venue list  |  Database venue list matches local venue list  |
 
