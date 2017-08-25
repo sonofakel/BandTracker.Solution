@@ -6,7 +6,11 @@
   <h1>Band:@Model["selectedBand"].GetName()</h1>
 </div>
 
-Venues where is bands has played:
+<a href ='/band/@Model["selectedBand"].GetId()/add-venue' class="btn btn-info">Add Venue to Band</a>
+
+<a href="/" class="btn btn-info">Back Home</a>
+
+<h3>Venues where @Model["selectedBand"].GetName() has played:</h3>
 @foreach(var venue in @Model["bandVenues"])
 {
   <ul>
