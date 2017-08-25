@@ -86,6 +86,27 @@ namespace BandTracker.Tests
       Assert.AreEqual(expected, actual);
     }
 
+    [TestMethod]
+    public void Delete_DeletesVenueFromDatabase_VenueList()
+    {
+      //Arrange
+      string name1 = "Gorge";
+      Venue testVenue1 = new Venue(name1);
+      testVenue1.Save();
+
+      string name2 = "Crocodile";
+      Venue testVenue2 = new Venue(name2);
+      testVenue2.Save();
+
+      //Act
+      testVenue1.Delete();
+      List<Venue> resultVenues = Venue.GetAll();
+      List<Venue> testVenueList = new List<Venue> {testVenue2};
+
+      //Assert
+      CollectionAssert.AreEqual(testVenueList, resultVenues);
+    }
+
 
   }
 }
