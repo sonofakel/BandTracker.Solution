@@ -6,12 +6,17 @@ using BandTracker.Models;
 namespace BandTracker.Tests
 {
   [TestClass]
-  public class VenueTests
+  public class VenueTests : IDisposable
   {
     public VenueTests()
     {
         DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=band_tracker_test;";
     }
+    public void Dispose()
+    {
+      Venue.DeleteAll();
+    }
+
     [TestMethod]
     public void GetAll_VenuesEmptyAtFirst_0()
     {
@@ -48,6 +53,20 @@ namespace BandTracker.Tests
 
       //Assert
       Assert.AreEqual(testId, result);
+    }
+
+    [TestMethod]
+    public void Find_FindsVenueInDatabase_Venue()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Gorge");
+      testVenue.Save();
+
+      //Act
+      Venue foundVenue = Venue.Find(testVenue.GetId());
+
+      //Assert
+      Assert.AreEqual(testVenue, foundVenue);
     }
 
 
