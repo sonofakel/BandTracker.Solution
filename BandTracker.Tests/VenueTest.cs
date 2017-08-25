@@ -107,6 +107,55 @@ namespace BandTracker.Tests
       CollectionAssert.AreEqual(testVenueList, resultVenues);
     }
 
+    [TestMethod]
+    public void GetBands_ReturnsAllBandsForVenue_BandList()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Gorge");
+      testVenue.Save();
+
+      Band testBand1 = new Band("Nirvana");
+      testBand1.Save();
+
+      Band testBand2 = new Band("Ween");
+      testBand2.Save();
+
+      //Act
+      testVenue.AddBandToVenueJoinTable(testBand1);
+      testVenue.AddBandToVenueJoinTable(testBand2);
+
+      List<Band> savedBands = testVenue.GetBands();
+      List<Band> testList = new List<Band> {testBand1, testBand2};
+
+      //Assert
+      CollectionAssert.AreEqual(testList, savedBands);
+    }
+
+
+    [TestMethod]
+    public void AddBandToVenueJoinTable_AddsBandToJoinTable_BandList()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Gorge");
+      testVenue.Save();
+
+      Band testBand = new Band("Nirvana");
+      testBand.Save();
+
+      Band testBand2 = new Band("Ween");
+      testBand2.Save();
+
+      //Act
+      testVenue.AddBandToVenueJoinTable(testBand);
+      testVenue.AddBandToVenueJoinTable(testBand2);
+
+      List<Band> result = testVenue.GetBands();
+      List<Band> testList = new List<Band>{testBand, testBand2};
+
+      //Assert
+      CollectionAssert.AreEqual(testList, result);
+    }
+
 
   }
 }
