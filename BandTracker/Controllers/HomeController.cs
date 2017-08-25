@@ -81,5 +81,30 @@ namespace BandTracker.Controllers
       return View();
     }
 
+    [HttpGet("/venue/{id}/add-band")]
+    public ActionResult VenueToBandForm(int id)
+    {
+      Venue thisVenue = Venue.Find(id);
+      return View("NewBandForm", thisVenue);
+    }
+
+    [HttpPost("/venue/{id}/add-band")]
+    public ActionResult AddBand(int id)
+    {
+
+      string band = Request.Form["band-name"];
+      Band newBand = new Band(band);
+      Venue thisVenue = Venue.Find(id);
+      newBand.Save();
+      thisVenue.AddBandToVenueJoinTable(newBand);
+
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Venue selectedVenue = Venue.Find(id);
+      List<Band> venueBands = selectedVenue.GetBands();
+      model.Add("selectedVenue", selectedVenue);
+      model.Add("venueBands", venueBands);
+      return View("VenueDetails", model);
+    }
+
   }
 }
