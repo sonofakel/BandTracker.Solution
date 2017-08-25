@@ -12,6 +12,15 @@ namespace BandTracker.Tests
     {
         DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=band_tracker_test;";
     }
+    [TestMethod]
+    public void GetAll_VenuesEmptyAtFirst_0()
+    {
+      //Arrange, Act
+      int result = Venue.GetAll().Count;
+
+      //Assert
+      Assert.AreEqual(0, result);
+    }
 
   }
 }

@@ -47,5 +47,27 @@ namespace BandTracker.Models
     {
       return this.GetName().GetHashCode();
     }
+
+    public static List<Venue> GetAll()
+    {
+     List<Venue> venueList = new List<Venue> {};
+
+     MySqlConnection conn = DB.Connection();
+     conn.Open();
+
+     var cmd = conn.CreateCommand() as MySqlCommand;
+     cmd.CommandText = @"SELECT * FROM venues;";
+
+     var rdr = cmd.ExecuteReader() as MySqlDataReader;
+     while(rdr.Read())
+     {
+       int venueId = rdr.GetInt32(0);
+       string name = rdr.GetString(1);
+       Venue newVenue = new Venue(name, venueId);
+       venueList.Add(newVenue);
+     }
+     conn.Close();
+     return venueList;
+    }
   }
 }
