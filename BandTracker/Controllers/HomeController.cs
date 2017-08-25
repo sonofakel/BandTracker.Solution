@@ -72,5 +72,14 @@ namespace BandTracker.Controllers
 
       return View("VenueDetails", model);
     }
+
+    [HttpGet("/venue/{id}/delete")]
+    public ActionResult VenueDelete(int id)
+    {
+      Venue thisVenue = Venue.Find(id);
+      thisVenue.Delete();
+      return View();
+    }
+
   }
 }
