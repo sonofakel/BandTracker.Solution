@@ -47,7 +47,11 @@ _This web app will allow a user to create bands that have played at a venue. The
 ---
 
 #### MySQL commands to create database
-
+- `CREATE DATABASE band_tracker;`
+- `USE band_tracker;`
+- `CREATE TABLE venues (id serial PRIMARY KEY, name VARCHAR(255));`
+- `CREATE TABLE bands (id serial PRIMARY KEY, name VARCHAR(255));`
+- `CREATE TABLE bands_venues (id serial PRIMARY KEY, band_id INT, venue_id INT);`
 
 ---
 
