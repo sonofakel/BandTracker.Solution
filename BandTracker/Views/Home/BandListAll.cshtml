@@ -1,0 +1,15 @@
+@{
+  Layout ="_Layout";
+}
+
+<div class="jumbotron">
+  <h1>All Bands</h1>
+</div>
+
+
+@foreach(var band in Model)
+{
+<ul>
+  <li><a href="/band/@band.GetId()">@band.GetName()</a></li>
+</ul>
+}

@@ -10,8 +10,10 @@ namespace BandTracker.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-    return View();
+    List<Venues> allVenues = Venue.GetAll();
+    return View(allVenues);
     }
+
   }
 
 }

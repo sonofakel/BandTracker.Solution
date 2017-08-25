@@ -1,0 +1,18 @@
+@{
+  Layout ="_Layout";
+}
+
+<div class="jumbotron">
+  <h1>Band Tracker</h1>
+</div>
+
+<a href="/venue/add-venue" class="btn btn-info">Add New Venue</a>
+<a href="/band/list-all" class="btn btn-info">Add New Venue</a>
+
+
+@foreach(var venue in Model)
+{
+<ul>
+  <li><a href="/venue/@venue.GetId()">@venue.GetName()</a></li>
+</ul>
+}
