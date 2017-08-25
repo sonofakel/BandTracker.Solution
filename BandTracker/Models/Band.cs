@@ -171,7 +171,7 @@ namespace BandTracker.Models
         cmd.Parameters.Add(bandIdParameter);
 
         var rdr = cmd.ExecuteReader() as MySqlDataReader;
-        List<Venue> categories = new List<Venue>{};
+        List<Venue> venues = new List<Venue>{};
 
         while(rdr.Read())
         {
@@ -179,14 +179,14 @@ namespace BandTracker.Models
           string venueName = rdr.GetString(1);
 
           Venue newVenue = new Venue(venueName, venueId);
-          categories.Add(newVenue);
+          venues.Add(newVenue);
         }
         conn.Close();
         if (conn != null)
         {
             conn.Dispose();
         }
-        return categories;
+        return venues;
     }
 
   }

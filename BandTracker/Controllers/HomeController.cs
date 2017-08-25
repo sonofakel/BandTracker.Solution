@@ -106,5 +106,17 @@ namespace BandTracker.Controllers
       return View("VenueDetails", model);
     }
 
+    [HttpGet("/band/{id}")]
+    public ActionResult BandDetails(int id)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Band selectedBand = Band.Find(id);
+      List<Venue> bandVenues = selectedBand.GetVenues();
+      model.Add("selectedBand", selectedBand);
+      model.Add("bandVenues", bandVenues);
+      return View(model);
+    }
+
+
   }
 }

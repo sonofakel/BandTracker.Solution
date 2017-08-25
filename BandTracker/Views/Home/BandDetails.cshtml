@@ -1,0 +1,15 @@
+@{
+  Layout ="_Layout";
+}
+
+<div class="jumbotron">
+  <h1>Band:@Model["selectedBand"].GetName()</h1>
+</div>
+
+Venues where is bands has played:
+@foreach(var venue in @Model["bandVenues"])
+{
+  <ul>
+    <li>@venue.GetName()</li>
+  </ul>
+}
