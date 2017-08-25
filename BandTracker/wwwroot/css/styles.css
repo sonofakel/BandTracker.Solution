@@ -1,0 +1,17 @@
+body {
+  background-image: url("../../img/background.png");
+  color: #7b7b7b;
+  text-align: center;
+}
+
+.jumbotron {
+  text-align: center;
+  background-image: url("../../img/memphis-colorful.png");
+  letter-spacing: 5px;
+}
+
+label {
+  color: white;
+  letter-spacing: 3px;
+  font-size: 20px;
+}
