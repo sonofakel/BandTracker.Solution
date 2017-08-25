@@ -3,11 +3,17 @@
 }
 
 <div class="jumbotron">
-  <h1>Venue:@Model["venue"].GetName()</h1>
+  <h1>Venue:@Model["selectedVenue"].GetName()</h1>
+  <p><a href='/venue/@Model["selectedVenue"].GetId()/update-form'>Update this venue name</a></p>
+  <p><a href='/venue/@Model["selectedVenue"].GetId()/delete'>Delete this venue</a></p>
 </div>
 
+<a href ='/venues/@Model["selectedVenue"].GetId()/add-band' class="btn btn-info">Add Band</a>
 
-@foreach(var band in @Model["bands"])
+<a href="/" class="btn btn-info">Back Home</a>
+
+
+@foreach(var band in @Model["venueBands"])
 {
   <ul>
     <li>@band.GetName()</li>

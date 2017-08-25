@@ -49,26 +49,26 @@ namespace BandTracker.Models
     }
 
     public static List<Venue> GetAll()
-    {
-     List<Venue> venueList = new List<Venue> {};
+      {
+       List<Venue> venueList = new List<Venue> {};
 
-     MySqlConnection conn = DB.Connection();
-     conn.Open();
+       MySqlConnection conn = DB.Connection();
+       conn.Open();
 
-     var cmd = conn.CreateCommand() as MySqlCommand;
-     cmd.CommandText = @"SELECT * FROM venues;";
+       var cmd = conn.CreateCommand() as MySqlCommand;
+       cmd.CommandText = @"SELECT * FROM venues;";
 
-     var rdr = cmd.ExecuteReader() as MySqlDataReader;
-     while(rdr.Read())
-     {
-       int venueId = rdr.GetInt32(0);
-       string name = rdr.GetString(1);
-       Venue newVenue = new Venue(name, venueId);
-       venueList.Add(newVenue);
-     }
-     conn.Close();
-     return venueList;
-    }
+       var rdr = cmd.ExecuteReader() as MySqlDataReader;
+       while(rdr.Read())
+       {
+         int venueId = rdr.GetInt32(0);
+         string name = rdr.GetString(1);
+         Venue newVenue = new Venue(name, venueId);
+         venueList.Add(newVenue);
+       }
+       conn.Close();
+       return venueList;
+      }
 
     public void Save()
     {
@@ -192,7 +192,7 @@ namespace BandTracker.Models
      return allBands;
    }
 
-    public void AddBandToVenueJoinTable(Band newVenue)
+    public void AddBandToVenueJoinTable(Band newBand)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
@@ -201,7 +201,7 @@ namespace BandTracker.Models
 
       MySqlParameter band_id_param = new MySqlParameter();
       band_id_param.ParameterName = "@BandId";
-      band_id_param.Value = newVenue.GetId();
+      band_id_param.Value = newBand.GetId();
       cmd.Parameters.Add(band_id_param);
 
       MySqlParameter venue_id_param = new MySqlParameter();

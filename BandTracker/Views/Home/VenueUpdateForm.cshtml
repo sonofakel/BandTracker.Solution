@@ -1,0 +1,14 @@
+@{
+  Layout ="_Layout";
+}
+
+<div class="jumbotron">
+  <h1>Update @Model.GetName() Venue Name</h1>
+</div>
+
+
+<form action='/venue/@Model.GetId()/updated' method="post">
+  <label for="new-venue-name">Add a venue</label>
+  <input type="text" name="new-venue-name">
+  <button type="submit" class="btn btn-info">Add</button>
+</form>

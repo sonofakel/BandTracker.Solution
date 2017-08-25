@@ -10,8 +10,8 @@ namespace BandTracker.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-    List<Venue> allVenues = Venue.GetAll();
-    return View(allVenues);
+
+      return View(Venue.GetAll());
     }
 
     [HttpGet("/venue/add-venue")]
@@ -32,6 +32,45 @@ namespace BandTracker.Controllers
       return View("Index", allVenues);
     }
 
-  }
+    [HttpGet("/bands/all")]
+    public ActionResult BandListAll()
+    {
+      List<Band> allBands = Band.GetAll();
+      return View(allBands);
+    }
 
+    [HttpGet("/venue/{id}")]
+    public ActionResult VenueDetails(int id)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Venue selectedVenue = Venue.Find(id);
+      List<Band> venueBands = selectedVenue.GetBands();
+      model.Add("selectedVenue", selectedVenue);
+      model.Add("venueBands", venueBands);
+      return View(model);
+    }
+
+    [HttpGet("/venue/{id}/update-form")]
+    public ActionResult VenueUpdateForm(int id)
+    {
+      Venue thisVenue = Venue.Find(id);
+
+      return View(thisVenue);
+    }
+    [HttpPost("/venue/{id}/updated")]
+    public ActionResult VenueUpdated(int id)
+    {
+
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Venue selectedVenue = Venue.Find(id);
+      selectedVenue.Update(Request.Form["new-venue-name"]);
+      List<Band> venueBands = selectedVenue.GetBands();
+
+      model.Add("selectedVenue", selectedVenue);
+      model.Add("venueBands", venueBands);
+
+
+      return View("VenueDetails", model);
+    }
+  }
 }
